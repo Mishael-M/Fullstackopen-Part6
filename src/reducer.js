@@ -13,7 +13,12 @@ const counterReducer = (state = initialState, action) => {
     case 'BAD':
       return { ...state, bad: state.bad + 1 };
     case 'ZERO':
-      return state;
+      return {
+        ...state,
+        good: 0,
+        ok: 0,
+        bad: 0,
+      };
     default:
       return state;
   }

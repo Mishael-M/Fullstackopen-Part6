@@ -66,7 +66,7 @@ describe('unicafe reducer', () => {
     });
   });
 
-  it.only('final state', () => {
+  it('final state', () => {
     const action = {
       type: 'DO_NOTHING',
     };
@@ -100,6 +100,33 @@ describe('unicafe reducer', () => {
       good: 5,
       ok: 4,
       bad: 2,
+    });
+  });
+
+  it('zero works', function () {
+    const actionG = {
+      type: 'GOOD',
+    };
+
+    const actionZ = {
+      type: 'ZERO',
+    };
+
+    const state = initialState;
+
+    deepFreeze(state);
+    let newState = counterReducer(state, actionG);
+    expect(newState).toEqual({
+      good: 1,
+      ok: 0,
+      bad: 0,
+    });
+
+    newState = counterReducer(newState, actionZ);
+    expect(newState).toEqual({
+      good: 0,
+      ok: 0,
+      bad: 0,
     });
   });
 });
